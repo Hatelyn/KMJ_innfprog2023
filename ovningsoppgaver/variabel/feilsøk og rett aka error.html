@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+</head>
+<body>
+    <p id="melding"></p>
+    <script> //mangel av > på slutten av tagen
+        const user_name = "Marius" //manglet " på slutten
+        const user_birthyear = 1983 //dobbelt t på slutten av const
+        const age = 2022 - user_birthyear //feil skrev variablesnavn
+        const utskrift = "Hei " + user_name + " (" + age + "år)" //mangel av + tegn mellom hei og user_name
+        document.getElementById("melding").innerHTML = utskrift
+    </script>
+</body>
+</html>
