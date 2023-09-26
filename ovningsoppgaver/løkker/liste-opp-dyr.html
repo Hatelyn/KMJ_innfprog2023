@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal list</title>
+</head>
+<body>
+    <ul id="zwierzoki"></ul>
+
+    <script>
+        const animals = ["psiarz", "kocur", "chomik", "szczur", "ryba", "lis", "wilk", "kurczok", "kakadu", "twujStary"]
+        let htmlString = ""
+
+        for (let teller = 0; teller < animals.length; teller++) { //dlugosc tabeli lepsza do ograniczenia petli
+            htmlString += `<li>${animals[teller]}</li>`
+        }
+
+        document.getElementById("zwierzoki").innerHTML = htmlString
+    </script>
+
+</body>
+</html>
