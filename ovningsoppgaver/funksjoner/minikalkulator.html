@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calc</title>
+    <style>
+        .red { color: red; }
+    </style>
+</head>
+<body>
+    <ul id="result">
+
+    </ul>
+
+    <script>
+        function calculator(num1 = 0, num2 = 0) {
+            const first = num1 + num2
+            const second = num1 - num2
+            const third = num1 / num2
+            const forth = num1 * num2
+
+            document.getElementById("result").innerHTML = `
+            <li ${first < 0 ? `class="red"` : null}>${num1} + ${num2} = ${first}</li>
+            <li ${second < 0 ? `class="red"` : null}>${num1} - ${num2} = ${second}</li>
+            <li ${third < 0 ? `class="red"` : null}>${num1} / ${num2} = ${third}</li>
+            <li ${forth < 0 ? `class="red"` : null}>${num1} * ${num2} = ${forth}</li>
+            `
+        }
+
+        calculator(10, 5)
+    </script>
+
+</body>
+</html>
