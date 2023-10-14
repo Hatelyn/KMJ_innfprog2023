@@ -8,7 +8,25 @@
 <body>
 
     <script>
-        lookup()
+        const alphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Æ", "Ø", "Å"]
+
+        function lookup(letter) {
+
+            letter = letter.toString().toUpperCase()
+            const p = document.createElement("p")
+
+            if(alphabet.includes(letter)) {
+                place = alphabet.indexOf(letter.toUpperCase()) + 1
+                p.innerText = `${letter.toUpperCase()} har plassering ${place}.`
+                document.body.appendChild(p)
+            } else {
+                p.innerText = `${letter.toUpperCase()} denne bokstaven er ikke en bokstav i det norske alfabetet.`
+                document.body.appendChild(p)
+            }
+        }
+
+        lookup("a")
+
     </script>
     
 </body>
