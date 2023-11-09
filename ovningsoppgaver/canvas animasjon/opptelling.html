@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opptelling</title>
+</head>
+<body>
+    <div id="counter"></div>
+
+    <script>
+        let countNum = 1
+        function printNumber(num) {
+           if (countNum > 1) {
+            document.getElementById("counter").innerHTML = `<p>${num} sekunder</p>`
+           } else {
+            document.getElementById("counter").innerHTML = `<p>${num} sekund</p>`    
+           }
+        }
+        function x() {clearInterval(INT)}
+
+        const INT = setInterval(function printCount() {
+            printNumber(countNum)
+            countNum++
+            console.log(countNum)
+            
+            if (countNum > 30) {
+            console.log("twuj stary")
+            x()
+            }
+        }
+        , 1000)
+  
+
+       
+
+        
+        
+        
+
+    </script>
+</body>
+</html>

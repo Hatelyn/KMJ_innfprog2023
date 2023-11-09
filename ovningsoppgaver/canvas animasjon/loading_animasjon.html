@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frames</title>
+</head>
+<body>
+    <canvas id="frames"></canvas>
+
+    <script>
+        const canvas = document.getElementById("frames")
+        canvas.width = 600
+        canvas.height = 600
+        const ctx = canvas.getContext("2d")
+
+        let position = 1
+    
+        setInterval(function draw() {
+
+            ctx.clearRect(0, 0, 600, 600)
+            ctx.fillStyle = "#2db3b8"
+
+            if(position === 1) {
+                ctx.fillRect(300, 0, canvas.width/2, canvas.height/2)
+                position++
+            } else if (position === 2) {
+                ctx.fillRect(0, 0, canvas.width/2, canvas.height/2)
+                position++
+            } else if (position === 3) {
+                ctx.fillRect(0, 300, canvas.width/2, canvas.height/2)
+                position++
+            } else if (position === 4) {
+                ctx.fillRect(300, 300, canvas.width/2, canvas.height/2)
+                position = 1
+            } 
+
+        }, 500)
+    </script>
+</body>
+</html>

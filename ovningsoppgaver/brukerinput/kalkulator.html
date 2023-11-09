@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+</head>
+<body>
+    <input type="number" id="tall1" name="number1">
+    <input type="number" id="tall2" name="number2">
+
+    <button id="pluss">Pluss</button>
+    <button id="minus">Minus</button>
+    <button id="dele">Dele</button>
+    <button id="gange">Gange</button>
+
+    <h2>Resultat: <span id="resultat"></span></h2>
+
+    <script>
+
+        const num1 = document.getElementById("tall1")
+        const num2 = document.getElementById("tall2")
+        const result = document.getElementById("resultat")
+
+        const pluss = document.getElementById("pluss")
+        const minus = document.getElementById("minus")
+        const dele = document.getElementById("dele")
+        const gange = document.getElementById("gange")
+
+        const add = () => {
+            result.innerHTML = parseInt(num1.value) + parseInt(num2.value)
+        }
+
+        const subtract = () => {
+            result.innerHTML = parseInt(num1.value) - parseInt(num2.value)
+        }
+        
+        const divide = () => {
+            result.innerHTML = parseInt(num1.value) / parseInt(num2.value)
+        }
+        
+        const multiply = () => {
+            result.innerHTML = parseInt(num1.value) * parseInt(num2.value)
+        }
+
+        pluss.addEventListener("click", add)
+        minus.addEventListener("click", subtract)
+        dele.addEventListener("click", divide)
+        gange.addEventListener("click", multiply)
+
+    </script>
+    
+</body>
+</html>

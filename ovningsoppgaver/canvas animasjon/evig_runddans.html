@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Floating ramp</title>
+</head>
+<body>
+    <canvas id="kwadratSpierdalacz"></canvas>
+
+    <script>
+        const canvas = document.getElementById("kwadratSpierdalacz")
+        canvas.width = 600
+        canvas.height = 400
+        const ctx = canvas.getContext("2d")
+        let x = 300
+        let y = 250
+
+        requestAnimationFrame = window.requestAnimationFrame || 
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || 
+        window.mozRequestAnimationFrame
+
+
+       function renderFrames() {
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+ 
+            ctx.fillRect(x, y, 100, 10)
+
+            x -= 10
+
+            if(x <= 0) {
+                x = 510
+            }
+
+            requestAnimationFrame(renderFrames)
+        }
+
+        renderFrames()
+    </script>
+    
+</body>
+</html>
