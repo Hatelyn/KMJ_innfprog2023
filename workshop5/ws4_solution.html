@@ -87,8 +87,8 @@
             player: "Marius",
             energy: 10,
             points: 50,
-            duration: 123,
-            gameState: "active" //mulige states: active, paused, gameover, completed
+            duration: 0,
+            gameState: "active" //mulige states: active, reading, paused, gameover, completed
         }
        
         //TODO: notebook
@@ -98,7 +98,8 @@
             loops: 5,
             functions: 3
         }
-        
+
+        //Gjør jeg klar randomMinMax-funksjon
         function randomMinMax(min, max) {
             return Math.floor(Math.random() * (max - min + 1) + min)
         }
@@ -132,7 +133,7 @@
         updateStaticUI()
 
         //WS2, Oppgave 4: Testkjøring av funksjon for å oppdatere ett element:
-        updateSingleStaticUI("playerName", "TESTNAVN")
+        //updateSingleStaticUI("playerName", "TESTNAVN")
 
         //Lage funksjon for å vise/skjule elementer
         function toggleVisibility(elementid) {
@@ -154,8 +155,6 @@
                     gameConfig.gameState = "active"
                 }
             }
-
-            
         }
 
         //WS2, Oppg. 3: Lytte etter tastaturtrykk
@@ -179,20 +178,22 @@
                 
                 console.log(gameConfig)
             }
-            if(Event.key === "ArrowRight") {
-                fortran.moveRight = true
-            }
-            if(Event.key === "ArrowLeft") {
+
+            //WS4, Oppg 1: sjekke etter piltaster
+            if(event.key === "ArrowLeft") {
                 fortran.moveLeft = true
             }
-            if(Event.key === "ArrowUp") {
-                fortran.moveUp = true
+            if(event.key === "ArrowRight") {
+                fortran.moveRight = true
             }
-            if(Event.key === "ArrowDown") {
+            if(event.key === "ArrowDown") {
                 fortran.moveDown = true
             }
+            if(event.key === "ArrowUp") {
+                fortran.moveUp = true
+            }
         })
-
+        //WS4, Oppg 1: Eventlistener for KeyUp
         document.addEventListener("keyup", function(event) {
             if(event.key === "ArrowLeft") {
                 fortran.moveLeft = false
@@ -230,12 +231,12 @@
             speed: 3,
             x: canvas.width / 2 - 20,
             y: canvas.height / 2 - 40,
-
+            //WS4, Oppg 2
             moveLeft: false,
             moveRight: false,
             moveUp: false,
             moveDown: false,
-
+            //WS4, Oppg 5
             width: 40,
             height: 80
         }
@@ -250,7 +251,11 @@
 
         //WS3, Oppg 5: Liste med elementtyper:
         const itemTypes = ["variable", "array", "loop", "function", "bug", "energydrink"]
+        //De to neste linjene kommenteres ut, siden de erstattes av WS4, oppg 5:
+        //const randomItem = itemTypes[Math.floor(Math.random() * itemTypes.length)]
+        //console.log(randomItem)
 
+        //WS4, oppg 5:
         const items = [
             {
                 type: itemTypes[Math.floor(Math.random() * itemTypes.length)],
@@ -273,9 +278,8 @@
         ]
         console.log(items)
 
-
         //WS3, Oppg 5: Funksjon for å tegne et element
-        function drawItem(type, x, y) {
+        function drawItem(type, x, y, lifetime) {
             const itemImage = new Image()
             itemImage.src = "icons/" + type + ".svg"
             ctx.drawImage(itemImage, x, y)
@@ -286,10 +290,9 @@
             ctx.fill()
             ctx.font = "12px Verdana"
             ctx.fillStyle = "white"
-            ctx.fillText("5", x+1, y+8)
+            ctx.fillText(lifetime, x+1, y+8)
             ctx.closePath()
         }
-
 
         //WS4, Bonus: Funksjon for out of bounds-straff
         function outOfBounds() {
@@ -316,7 +319,6 @@
         window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || 
         window.mozRequestAnimationFrame
 
-
         function renderFrames() {
             //Tømme frame
             ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -339,10 +341,14 @@
                 console.log("Spillet er i gang")
                 pauseText("Press P to pause")
 
-                if(gameConfig.gameState === "active"){
+                if(gameConfig.gameState === "active") {
+                    //WS4, oppg 1:
+                    //Hvis moveX er true, skal vi bevege fortran.speed antall pixler i den retningen
+                    //Hvis fortran er halvveis utenfor spillbrettet, skal han miste en energi og 
+                    //bli plassert i midten av spillbrettet (funksjon outOfBounds())
                     if(fortran.moveLeft === true) {
                         fortran.x = fortran.x - fortran.speed
-                        if(fortran.x <= 0 - (fortran.speed / 2)) {
+                        if(fotran.x <= 0 - (fortran.speed / 2)) {
                             outOfBounds()
                             fortran.moveLeft = false
                         }
@@ -370,6 +376,7 @@
                         }
                     }
                 }
+                
             }
             //Kjør renderFrames på ny vha requestAnimationFrame
             requestAnimationFrame(renderFrames)
